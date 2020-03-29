@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<style>
+  #id_Choose{
+    list-style: none;
+  }
+
+  h2{
+    color: red;
+  }
+</style>
+
+<head>
+  <a class="btn btn-primary" href="{% url 'blog:home' %}">Home</a>
+  <a class="btn btn-primary" href="{% url 'blog:logout' %}">Logout</a>
+  <h1>{{ blog.blog_title }}</h1>
+  <h2>Are you sure, you want to delete this blog ?</h2>
+
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  <form action="{% url 'blog:deleteblog' user.id blog.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Confirm">
+  </form>
+</head>
+{% endblock %}

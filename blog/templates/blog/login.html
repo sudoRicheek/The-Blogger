@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<style>
+  input[type=text] {
+      font-size: 16px;
+  }
+</style>
+<head>
+  <h1>Login</h1>
+  <form class="site-form" action="{% url 'blog:login' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    {% if request.GET.next %}
+      <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+    <input type="submit" value="Login">
+  </form>
+</head>
+{% endblock content %}

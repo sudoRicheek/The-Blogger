@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<body>
+	<a class="btn btn-primary" href="{% url 'blog:home' %}">Home</a>
+	<a class="btn btn-primary" href="{% url 'blog:logout' %}">Logout</a>
+	<div class="create-article">
+		<h1>Create an Awesome new Article</h1>
+		<form class="site-form" action="{% url 'blog:createblog' user.id %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+	 		{{ form }}
+			<input type="submit" value="Create">
+		</form>
+	</div>
+</body>
+{% endblock %}

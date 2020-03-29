@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+  <style>
+    p{
+      margin-left: 15%;
+      margin-right: 15%;
+      text-align: justify;
+      white-space: pre-wrap;
+    }
+  </style>
+
+  <head>
+    <a class="btn btn-primary" href="{% url 'blog:home' %}">Home</a>
+    <a class="btn btn-primary" href="{% url 'blog:logout' %}">Logout</a>
+    <h1>{{ blog.blog_title }}</h1><br>
+    <h3>Author : {{ blog.author.username }}</h3>
+    <h3>Publication Date : {{ blog.pub_date.date }}</h3><br>
+  </head>
+
+  <body>
+    <p>{{ blog.textcontent }}</p>
+  </body>
+{% endblock %}

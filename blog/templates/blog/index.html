@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+  <style>
+    .btn-primary{
+      padding: 3px 15px;
+      border: 1px solid green;
+    }
+  </style>
+  <head>
+    <a class='btn btn-primary' href="{% url 'blog:login' %}">Login</a>
+    <a class='btn btn-primary' href="{% url 'blog:signup' %}">Signup</a>
+    <h1>Welcome to The Blogger !</h1>
+    <h4>A lightweight blogging application developed in Django</h4><br>
+    <h2>Recent Blogs</h2><br>
+
+    <table>
+      <col span = "3"/>
+      <tr>
+        <th>Blog Title</th>
+        <th>Author</th>
+        <th>Publication Date</th>
+      </tr>
+        {% for blog in blogs %}
+          <tr>
+            <td><a href="{% url 'blog:getblog' blog.id %}">{{ blog.blog_title }}</a></td>
+            <td>{{ blog.author.username }}</td>
+            <td>{{ blog.pub_date.date }}</td>
+          </tr>
+        {% endfor %}
+    </table>
+  </head>
+{% endblock %}

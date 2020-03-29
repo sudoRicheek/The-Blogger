@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<head>
+  <a class="btn btn-primary" href="{% url 'blog:home' %}">Home</a>
+  <a class="btn btn-primary" href="{% url 'blog:logout' %}">Logout</a>
+  <h1>Recent blogs</h1><br>
+</head>
+
+<body>
+  <table>
+    <col span="3"/>
+    <tr>
+      <th>Blog Title</th>
+      <th>Author</th>
+      <th>Publication Date</th>
+    </tr>
+    {% for blog in blogs %}
+      <tr>
+        <td><a href="{% url 'blog:getblog' blog.id%}">{{ blog.blog_title }}</a></td>
+        <td>{{ blog.author.username }}</td>
+        <td>{{ blog.pub_date.date }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+{% endblock content %}
